@@ -40,3 +40,69 @@ describe "group of tests for parte 1" {
     assert.equals(24,leonardo.nivelDeFortaleza())
   }
 }
+
+describe "group of tests for parte 2" {
+  const leonardo = new Paciente(edad = 40,nivelDeDolor = 10,nivelDeFortaleza = 20,rutinaAsignada = [bicicleta,minitramp,bicicleta,magneto])
+  const milena = new Paciente(edad = 3,nivelDeDolor = 30,nivelDeFortaleza = 50,rutinaAsignada = [magneto,bicicleta])
+
+  const magneto = new Magneto()
+  const bicicleta = new Bicicleta()
+  const minitramp = new Minitramp()
+
+  test "Leonardo puede hacer la rutina Asignada."{
+    assert.that(leonardo.puedeHacerLaRutinaAsignada())
+  }
+
+  test "Despues de hacerla una vez, su nivel de dolor baja a 1.8 y su fortaleza sube a 27"{
+    leonardo.realizarRutinaAsignada()
+    assert.equals(30,leonardo.nivelDeFortaleza())
+    assert.equals(1.8,leonardo.nivelDeDolor())
+  }
+
+  test "Milena no puede hacer la rutina asignada"{
+    assert.notThat(milena.puedeHacerLaRutinaAsignada())
+  }
+}
+
+describe "grupo de test para parte 3"{
+  const nicolas = new Resistente(edad = 40,nivelDeDolor = 10,nivelDeFortaleza = 20,rutinaAsignada = [bicicleta,minitramp,bicicleta,magneto])
+  const victoria = new Caprichoso(edad = 30,nivelDeDolor = 10,nivelDeFortaleza = 40,rutinaAsignada = [bicicleta,minitramp,bicicleta,magneto])
+  const julian = new Caprichoso(edad = 20,nivelDeDolor = 54,nivelDeFortaleza = 50,rutinaAsignada = [bicicletaRoja,magnetoVerde,bicicleta])
+  const zoe = new RapidaRecuperacion(edad = 50,nivelDeDolor = 14,nivelDeFortaleza = 40,rutinaAsignada = [bicicleta,minitramp,bicicleta,magneto])
+
+  const magneto = new Magneto()
+  const bicicleta = new Bicicleta()
+  const minitramp = new Minitramp()
+
+  const bicicletaRoja = new Bicicleta(color = "rojo")
+  const magnetoVerde = new Magneto(color = "verde")
+
+  test "Nicolás puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 1.8, y su fortaleza sube a 34"{
+    assert.that(nicolas.puedeHacerLaRutinaAsignada())
+    nicolas.realizarRutinaAsignada()
+    assert.equals(1.8,nicolas.nivelDeDolor())
+    assert.equals(34,nicolas.nivelDeFortaleza())
+  }
+
+  test "Victoria no puede hacer la rutina que tiene asignada"{
+    assert.notThat(victoria.puedeHacerLaRutinaAsignada())
+  }
+
+  test "Julián puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 29.3, y su fortaleza sube a 62"{
+    assert.that(julian.puedeHacerLaRutinaAsignada())
+    julian.realizarRutinaAsignada()
+    assert.equals(29.3,julian.nivelDeDolor())
+    assert.equals(62,julian.nivelDeFortaleza())
+  }
+
+  test "Zoe puede hacer la rutina que tiene asignada"{
+    assert.that(zoe.puedeHacerLaRutinaAsignada())
+  }
+
+  test "Después de asignar a 2 el valor de decremento de dolor para pacientes de rápida recuperación, y de que Zoe haga su rutinauna vez, su nivel de dolor baja a 3.4, y su fortaleza sube a 51"{
+    zoe.asignarValorDeDecremento(2)
+    zoe.realizarRutinaAsignada()
+    assert.equals(3.4,zoe.nivelDeDolor())
+    assert.equals(51, zoe.nivelDeFortaleza())
+  }
+}
